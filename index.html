@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Agencia de desarrollo de software y tecnología: sistemas especializados a la medida y sitios web profesionales de alto impacto."
+    />
+    <title>Titanium Solutions — Agencia de software y tecnología</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              surface: "#0b0f14",
+              panel: "#111827",
+              border: "#1f2937",
+            },
+            fontFamily: {
+              sans: ["Inter", "system-ui", "sans-serif"],
+              mono: ["JetBrains Mono", "ui-monospace", "monospace"],
+            },
+            boxShadow: {
+              glow: "0 0 40px -10px rgba(16, 185, 129, 0.35)",
+              "glow-cyan": "0 0 40px -10px rgba(34, 211, 238, 0.3)",
+            },
+            transitionTimingFunction: {
+              agency: "cubic-bezier(0.22, 1, 0.36, 1)",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .gradient-text {
+        background: linear-gradient(135deg, #10b981 0%, #22d3ee 50%, #10b981 100%);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .grid-bg {
+        background-image: linear-gradient(
+            rgba(16, 185, 129, 0.04) 1px,
+            transparent 1px
+          ),
+          linear-gradient(90deg, rgba(16, 185, 129, 0.04) 1px, transparent 1px);
+        background-size: 48px 48px;
+      }
+      #cursor-glow {
+        --spot-x: 50vw;
+        --spot-y: 28vh;
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        overflow: hidden;
+      }
+      #cursor-glow::before {
+        content: "";
+        position: absolute;
+        width: 780px;
+        height: 780px;
+        left: 0;
+        top: 0;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(16, 185, 129, 0.18) 0%,
+          rgba(34, 211, 238, 0.07) 32%,
+          transparent 68%
+        );
+        transform: translate3d(calc(var(--spot-x) - 390px), calc(var(--spot-y) - 390px), 0);
+        will-change: transform;
+      }
+      header,
+      main,
+      footer {
+        position: relative;
+        z-index: 1;
+      }
+      .bento-card {
+        position: relative;
+        isolation: isolate;
+        transition:
+          transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+          border-color 0.45s ease,
+          box-shadow 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .bento-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        opacity: 0;
+        pointer-events: none;
+        border-radius: inherit;
+        background: radial-gradient(
+          520px circle at var(--mx, 50%) var(--my, 50%),
+          rgba(16, 185, 129, 0.14),
+          transparent 42%
+        );
+        transition: opacity 0.45s ease;
+      }
+      .bento-card.bento-cyan::before {
+        background: radial-gradient(
+          520px circle at var(--mx, 50%) var(--my, 50%),
+          rgba(34, 211, 238, 0.12),
+          transparent 42%
+        );
+      }
+      .bento-card:hover:not(.tilt-card) {
+        transform: translateY(-6px);
+      }
+      .bento-card:hover::before {
+        opacity: 1;
+      }
+      .tilt-wrap {
+        perspective: 1100px;
+      }
+      .tilt-card {
+        --rx: 0deg;
+        --ry: 0deg;
+        transform-style: preserve-3d;
+        transform: rotateX(var(--rx)) rotateY(var(--ry)) translateZ(0);
+        transition:
+          transform 0.18s ease-out,
+          box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+          border-color 0.45s ease;
+      }
+      .tilt-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 3;
+        pointer-events: none;
+        border-radius: inherit;
+        opacity: 0;
+        background: radial-gradient(
+          420px circle at var(--mx, 50%) var(--my, 50%),
+          rgba(16, 185, 129, 0.85),
+          rgba(16, 185, 129, 0.12) 28%,
+          transparent 52%
+        );
+        mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        mask-composite: exclude;
+        -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+        padding: 1px;
+        transition: opacity 0.35s ease;
+      }
+      .tilt-card.bento-cyan::after {
+        background: radial-gradient(
+          420px circle at var(--mx, 50%) var(--my, 50%),
+          rgba(34, 211, 238, 0.85),
+          rgba(34, 211, 238, 0.12) 28%,
+          transparent 52%
+        );
+      }
+      .tilt-card:hover {
+        box-shadow:
+          0 24px 60px -28px rgba(16, 185, 129, 0.55),
+          0 0 0 1px rgba(16, 185, 129, 0.28);
+      }
+      .tilt-card.bento-cyan:hover {
+        box-shadow:
+          0 24px 60px -28px rgba(34, 211, 238, 0.4),
+          0 0 0 1px rgba(34, 211, 238, 0.28);
+      }
+      .tilt-card:hover::after {
+        opacity: 1;
+      }
+      .ui-bar {
+        height: 8px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #10b981 0%, rgba(16, 185, 129, 0.15) 100%);
+      }
+      .process-line {
+        display: none;
+      }
+      @media (min-width: 768px) {
+        .process-line {
+          display: block;
+          position: absolute;
+          top: 2.25rem;
+          left: 16%;
+          right: 16%;
+          height: 1px;
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(16, 185, 129, 0.45),
+            transparent
+          );
+        }
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .reveal.is-visible {
+        opacity: 1;
+        transform: none;
+      }
+      .reveal-d1 { transition-delay: 0.08s; }
+      .reveal-d2 { transition-delay: 0.16s; }
+      .reveal-d3 { transition-delay: 0.24s; }
+      .reveal-d4 { transition-delay: 0.32s; }
+      .hero-in {
+        animation: heroIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+      .hero-in-d1 { animation-delay: 0.08s; }
+      .hero-in-d2 { animation-delay: 0.16s; }
+      .hero-in-d3 { animation-delay: 0.26s; }
+      .hero-in-d4 { animation-delay: 0.36s; }
+      @keyframes heroIn {
+        from {
+          opacity: 0;
+          transform: translateY(22px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      .marquee {
+        overflow: hidden;
+        mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+        -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+      }
+      .marquee-track {
+        display: flex;
+        width: max-content;
+        gap: 1rem;
+        animation: marquee 48s linear infinite;
+      }
+      .marquee:hover .marquee-track {
+        animation-play-state: paused;
+      }
+      @keyframes marquee {
+        from { transform: translateX(0); }
+        to { transform: translateX(-50%); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        .bento-card,
+        .bento-card:hover,
+        .tilt-card {
+          transform: none;
+          transition: none;
+        }
+        .hero-in {
+          animation: none;
+        }
+        .reveal {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+        .marquee-track {
+          animation: none;
+        }
+        #cursor-glow {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body class="relative overflow-x-hidden bg-surface text-gray-100 font-sans antialiased">
+    <div id="cursor-glow" aria-hidden="true"></div>
+    <!-- Cambia el número de WhatsApp (formato internacional sin + ni espacios) -->
+    <script>
+      const WHATSAPP_NUMBER = "5212345678900";
+      const WHATSAPP_MSG_DEFAULT =
+        "¡Hola! Quiero una cotización con Titanium Solutions.";
+      function waLink(msg) {
+        return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+      }
+    </script>
+
+    <!-- Navbar -->
+    <header
+      class="fixed top-0 left-0 right-0 z-50 border-b border-border/80 bg-surface/80 backdrop-blur-xl"
+    >
+      <nav
+        class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6"
+        aria-label="Principal"
+      >
+        <a
+          href="#inicio"
+          class="group flex items-center gap-2 font-semibold tracking-tight"
+        >
+          <span
+            class="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 ring-1 ring-emerald-500/30 transition group-hover:ring-emerald-400/50"
+          >
+            <span class="text-sm font-bold text-emerald-400">T</span>
+          </span>
+          <span class="hidden sm:inline">Titanium <span class="text-gray-400">Solutions</span></span>
+        </a>
+
+        <button
+          type="button"
+          id="menu-toggle"
+          class="inline-flex items-center justify-center rounded-lg p-2 text-gray-300 ring-1 ring-border hover:bg-panel md:hidden"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          aria-label="Abrir menú"
+        >
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              id="icon-open"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+            <path
+              id="icon-close"
+              class="hidden"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+
+        <div
+          id="mobile-menu"
+          class="absolute left-0 right-0 top-full hidden flex-col gap-1 border-b border-border bg-surface/95 px-4 py-4 backdrop-blur-xl md:static md:flex md:flex-row md:items-center md:border-0 md:bg-transparent md:p-0"
+        >
+          <a
+            href="#inicio"
+            class="nav-link rounded-lg px-3 py-2 text-sm text-gray-300 transition hover:bg-panel hover:text-white"
+            >Inicio</a
+          >
+          <a
+            href="#servicios"
+            class="nav-link rounded-lg px-3 py-2 text-sm text-gray-300 transition duration-300 hover:bg-panel hover:text-white"
+            >Servicios</a
+          >
+          <a
+            href="#proyectos"
+            class="nav-link rounded-lg px-3 py-2 text-sm text-gray-300 transition duration-300 hover:bg-panel hover:text-white"
+            >Proyectos</a
+          >
+          <a
+            href="#proceso"
+            class="nav-link rounded-lg px-3 py-2 text-sm text-gray-300 transition duration-300 hover:bg-panel hover:text-white"
+            >Proceso</a
+          >
+          <a
+            href="#contacto"
+            class="nav-link rounded-lg px-3 py-2 text-sm text-gray-300 transition duration-300 hover:bg-panel hover:text-white"
+            >Contacto</a
+          >
+          <a
+            id="nav-whatsapp"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-2 inline-flex items-center justify-center gap-2 rounded-lg bg-emerald-500 px-4 py-2.5 text-sm font-semibold text-gray-950 transition duration-300 hover:bg-emerald-400 md:mt-0 md:ml-2"
+          >
+            <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+              />
+            </svg>
+            WhatsApp
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section
+        id="inicio"
+        class="relative grid-bg overflow-hidden pt-28 pb-20 sm:pt-32 sm:pb-28"
+      >
+        <div
+          class="pointer-events-none absolute inset-0 bg-gradient-to-b from-emerald-500/5 via-transparent to-cyan-500/5"
+        ></div>
+        <div
+          class="pointer-events-none absolute -top-24 right-0 h-72 w-72 rounded-full bg-emerald-500/10 blur-3xl"
+        ></div>
+        <div
+          class="pointer-events-none absolute bottom-0 left-0 h-64 w-64 rounded-full bg-cyan-500/10 blur-3xl"
+        ></div>
+
+        <div class="relative mx-auto max-w-6xl px-4 sm:px-6">
+          <p
+            class="hero-in mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-3 py-1 text-xs font-medium text-emerald-400"
+          >
+            <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            Agencia de software y tecnología
+          </p>
+          <h1
+            class="hero-in hero-in-d1 max-w-4xl text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl"
+          >
+            Sistemas y sitios web
+            <span class="gradient-text">de alto impacto</span>
+          </h1>
+          <p class="hero-in hero-in-d2 mt-6 max-w-2xl text-lg text-gray-300 leading-relaxed">
+            En <strong class="font-semibold text-gray-100">Titanium Solutions</strong> desarrollamos
+            <strong class="font-semibold text-gray-100">sistemas especializados a la medida</strong>
+            y <strong class="font-semibold text-gray-100">sitios web profesionales</strong>: rápidos,
+            seguros y optimizados para negocios, restaurantes, marcas personales y empresas.
+          </p>
+          <div class="hero-in hero-in-d3 mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <a
+              href="#servicios"
+              class="inline-flex items-center justify-center rounded-xl bg-white/5 px-6 py-3.5 text-sm font-semibold ring-1 ring-white/10 transition duration-300 ease-agency hover:-translate-y-0.5 hover:bg-white/10 hover:ring-emerald-500/40"
+            >
+              Ver servicios
+            </a>
+            <a
+              id="hero-whatsapp"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-6 py-3.5 text-sm font-semibold text-gray-950 shadow-glow transition duration-300 ease-agency hover:-translate-y-0.5 hover:bg-emerald-400"
+            >
+              <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+                />
+              </svg>
+              Cotizar por WhatsApp
+            </a>
+          </div>
+
+          <dl class="hero-in hero-in-d4 mt-14 grid grid-cols-2 gap-4 sm:grid-cols-4">
+            <div class="bento-card rounded-xl border border-border bg-panel/50 p-4 hover:border-emerald-500/30">
+              <dt class="text-xs uppercase tracking-wider text-gray-500">Sistemas</dt>
+              <dd class="mt-1 font-semibold text-emerald-400">A la medida</dd>
+            </div>
+            <div class="bento-card rounded-xl border border-border bg-panel/50 p-4 hover:border-emerald-500/30">
+              <dt class="text-xs uppercase tracking-wider text-gray-500">Sitios web</dt>
+              <dd class="mt-1 font-semibold">Alto impacto</dd>
+            </div>
+            <div class="bento-card rounded-xl border border-border bg-panel/50 p-4 hover:border-emerald-500/30">
+              <dt class="text-xs uppercase tracking-wider text-gray-500">En operación</dt>
+              <dd class="mt-1 font-semibold">Gym System</dd>
+            </div>
+            <div class="bento-card rounded-xl border border-border bg-panel/50 p-4 hover:border-emerald-500/30">
+              <dt class="text-xs uppercase tracking-wider text-gray-500">Cotización</dt>
+              <dd class="mt-1 font-semibold text-cyan-400">WhatsApp</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- Servicios -->
+      <section id="servicios" class="border-t border-border py-20 sm:py-24">
+        <div class="mx-auto max-w-6xl px-4 sm:px-6">
+          <div class="reveal mx-auto max-w-2xl text-center">
+            <p class="text-xs font-medium uppercase tracking-[0.2em] text-emerald-400">
+              Qué hacemos
+            </p>
+            <h2 class="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
+              Dos líneas de trabajo, un estándar
+            </h2>
+            <p class="mt-4 text-gray-400">
+              Ingeniería de software y presencia digital de alta gama, con el mismo
+              cuidado en rendimiento, diseño y operación real.
+            </p>
+          </div>
+
+          <div class="mt-12 grid gap-4 lg:grid-cols-2">
+            <article
+              class="bento-card reveal reveal-d1 rounded-3xl border border-border bg-panel p-7 hover:border-emerald-500/40 hover:shadow-glow sm:p-8"
+            >
+              <p class="font-mono text-xs text-emerald-400/80">01</p>
+              <h3 class="mt-2 text-2xl font-bold tracking-tight">Sistemas especializados a la medida</h3>
+              <p class="mt-3 text-sm leading-relaxed text-gray-400">
+                Plataformas construidas para un giro concreto: operación diaria, datos
+                privados y flujos que un software genérico no cubre.
+              </p>
+              <ul class="mt-6 space-y-2 text-sm text-gray-300">
+                <li class="flex gap-2">
+                  <span class="text-emerald-400">✓</span> Titanium Gym System — activo
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-emerald-400">✓</span> Titanium Medical System
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-emerald-400">✓</span> Dental AI
+                </li>
+              </ul>
+              <a
+                href="#proyectos"
+                class="mt-6 inline-flex items-center gap-1 text-sm font-medium text-emerald-400 transition duration-300 hover:gap-2"
+              >
+                Ver sistemas →
+              </a>
+            </article>
+
+            <article
+              class="bento-card bento-cyan reveal reveal-d2 rounded-3xl border border-border bg-panel p-7 hover:border-cyan-400/40 hover:shadow-glow-cyan sm:p-8"
+            >
+              <p class="font-mono text-xs text-cyan-400/80">02</p>
+              <h3 class="mt-2 text-2xl font-bold tracking-tight">Sitios web profesionales</h3>
+              <p class="mt-3 text-sm leading-relaxed text-gray-400">
+                Páginas de alto impacto, rápidas y optimizadas: diseño a medida,
+                arquitectura limpia y lista para convertir visitas en clientes.
+              </p>
+              <ul class="mt-6 space-y-2 text-sm text-gray-300">
+                <li class="flex gap-2">
+                  <span class="text-cyan-400">✓</span> Negocios y empresas
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-cyan-400">✓</span> Restaurantes
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-cyan-400">✓</span> Marcas personales
+                </li>
+              </ul>
+              <a
+                id="web-whatsapp"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mt-6 inline-flex items-center gap-1 text-sm font-medium text-cyan-400 transition duration-300 hover:gap-2"
+              >
+                Cotizar un sitio →
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Proyectos — Bento Grid -->
+      <section id="proyectos" class="border-t border-border py-20 sm:py-24">
+        <div class="mx-auto max-w-6xl px-4 sm:px-6">
+          <div class="reveal flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div class="max-w-2xl">
+              <p class="text-xs font-medium uppercase tracking-[0.2em] text-emerald-400">
+                Sistemas
+              </p>
+              <h2 class="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
+                Especializados <span class="text-emerald-400">a la medida</span>
+              </h2>
+              <p class="mt-4 text-gray-400">
+                Software de operación real: gimnasios, clínicas médicas y consultorios
+                dentales, con el mismo estándar de ingeniería.
+              </p>
+            </div>
+            <a
+              href="#proceso"
+              class="group inline-flex items-center gap-2 text-sm font-medium text-gray-400 transition duration-300 hover:text-emerald-400"
+            >
+              Cómo trabajamos
+              <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
+            </a>
+          </div>
+
+          <div class="mt-12 grid grid-cols-1 gap-4 md:grid-cols-6">
+            <!-- Gym — featured tile -->
+            <div class="tilt-wrap reveal h-full md:col-span-4 md:row-span-2">
+            <article
+              class="bento-card tilt-card group h-full overflow-hidden rounded-3xl border border-border bg-panel p-6 hover:border-emerald-500/40 sm:p-8"
+            >
+              <div
+                class="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-emerald-500/10 blur-3xl transition duration-700 group-hover:bg-emerald-500/25"
+              ></div>
+              <div class="flex h-full flex-col">
+                <div class="flex flex-wrap items-start justify-between gap-3">
+                  <div>
+                    <p class="font-mono text-xs text-emerald-400/80">01 / Activo</p>
+                    <h3 class="mt-1 text-2xl font-bold tracking-tight sm:text-3xl">
+                      Titanium Gym System
+                    </h3>
+                  </div>
+                  <span
+                    class="rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-400 ring-1 ring-emerald-500/20"
+                    >En operación</span
+                  >
+                </div>
+                <p class="mt-4 max-w-xl text-gray-400 leading-relaxed">
+                  Sistema de gestión integral para gimnasios: altas de clientes,
+                  membresías, control de caja e impresión de tickets inteligentes
+                  al pie de cada comprobante.
+                </p>
+
+                <div
+                  class="mt-6 overflow-hidden rounded-2xl border border-border/80 bg-surface/80 p-4 transition duration-500 group-hover:border-emerald-500/25"
+                >
+                  <div class="mb-3 flex items-center gap-1.5">
+                    <span class="h-2 w-2 rounded-full bg-emerald-500/70"></span>
+                    <span class="h-2 w-2 rounded-full bg-white/15"></span>
+                    <span class="h-2 w-2 rounded-full bg-white/15"></span>
+                    <span class="ml-2 font-mono text-[10px] text-gray-500">caja · membresías</span>
+                  </div>
+                  <div class="grid grid-cols-3 gap-3 text-center">
+                    <div class="rounded-xl bg-white/[0.03] p-3 ring-1 ring-white/5">
+                      <p class="text-[10px] uppercase tracking-wider text-gray-500">Socios</p>
+                      <p class="mt-1 text-lg font-semibold text-white">248</p>
+                    </div>
+                    <div class="rounded-xl bg-white/[0.03] p-3 ring-1 ring-white/5">
+                      <p class="text-[10px] uppercase tracking-wider text-gray-500">Caja hoy</p>
+                      <p class="mt-1 text-lg font-semibold text-emerald-400">$4,820</p>
+                    </div>
+                    <div class="rounded-xl bg-white/[0.03] p-3 ring-1 ring-white/5">
+                      <p class="text-[10px] uppercase tracking-wider text-gray-500">Tickets</p>
+                      <p class="mt-1 text-lg font-semibold text-white">37</p>
+                    </div>
+                  </div>
+                  <div class="mt-3 ui-bar opacity-80"></div>
+                </div>
+
+                <ul class="mt-6 grid gap-2 text-sm text-gray-300 sm:grid-cols-2">
+                  <li class="flex gap-2">
+                    <span class="text-emerald-400">✓</span> CRM de clientes y membresías
+                  </li>
+                  <li class="flex gap-2">
+                    <span class="text-emerald-400">✓</span> Caja, cortes y reportes
+                  </li>
+                  <li class="flex gap-2">
+                    <span class="text-emerald-400">✓</span> Tickets térmicos inteligentes
+                  </li>
+                  <li class="flex gap-2">
+                    <span class="text-emerald-400">✓</span> SQLite WAL, rápido y fiable
+                  </li>
+                </ul>
+                <div class="mt-auto flex flex-wrap gap-2 pt-6">
+                  <span class="rounded-md bg-surface px-2.5 py-1 text-xs font-medium text-gray-400 ring-1 ring-border transition duration-300 group-hover:ring-emerald-500/30">React</span>
+                  <span class="rounded-md bg-surface px-2.5 py-1 text-xs font-medium text-gray-400 ring-1 ring-border transition duration-300 group-hover:ring-emerald-500/30">Node.js</span>
+                  <span class="rounded-md bg-surface px-2.5 py-1 text-xs font-medium text-gray-400 ring-1 ring-border transition duration-300 group-hover:ring-emerald-500/30">SQLite (WAL)</span>
+                </div>
+              </div>
+            </article>
+            </div>
+
+            <!-- Medical -->
+            <div class="tilt-wrap reveal reveal-d1 h-full md:col-span-2">
+            <article
+              class="bento-card bento-cyan tilt-card group h-full overflow-hidden rounded-3xl border border-border bg-panel p-6 hover:border-cyan-400/40 sm:p-7"
+            >
+              <div
+                class="pointer-events-none absolute -right-10 -top-10 h-36 w-36 rounded-full bg-cyan-500/10 blur-3xl transition duration-700 group-hover:bg-cyan-500/25"
+              ></div>
+              <p class="font-mono text-xs text-cyan-400/80">02 / Salud</p>
+              <div class="mt-2 flex items-start justify-between gap-2">
+                <h3 class="text-xl font-bold tracking-tight">Titanium Medical System</h3>
+                <span
+                  class="shrink-0 rounded-full bg-cyan-500/10 px-2.5 py-1 text-[10px] font-medium text-cyan-400 ring-1 ring-cyan-500/20"
+                  >Clínicas</span
+                >
+              </div>
+              <p class="mt-3 text-sm text-gray-400 leading-relaxed">
+                Software médico para historias clínicas y control gineco-obstétrico,
+                con asistencia de IA en tu propia red (Ollama).
+              </p>
+              <ul class="mt-5 space-y-2 text-sm text-gray-300">
+                <li class="flex gap-2">
+                  <span class="text-cyan-400">✓</span> Expediente clínico
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-cyan-400">✓</span> Módulo gineco-obstétrico
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-cyan-400">✓</span> IA local con Ollama
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-cyan-400">✓</span> Privacidad por diseño
+                </li>
+              </ul>
+              <div class="mt-5 flex flex-wrap gap-2">
+                <span class="rounded-md bg-surface px-2.5 py-1 text-xs font-medium text-gray-400 ring-1 ring-border">Historias clínicas</span>
+                <span class="rounded-md bg-surface px-2.5 py-1 text-xs font-medium text-gray-400 ring-1 ring-border">Ollama</span>
+              </div>
+            </article>
+            </div>
+
+            <!-- Dental AI -->
+            <div class="tilt-wrap reveal reveal-d2 h-full md:col-span-2">
+            <article
+              class="bento-card tilt-card group h-full overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-emerald-500/10 to-panel p-6 hover:border-emerald-500/40"
+            >
+              <div class="flex items-start justify-between gap-2">
+                <p class="font-mono text-xs text-emerald-400/80">03 / Dental</p>
+                <span
+                  class="shrink-0 rounded-full bg-emerald-500/10 px-2.5 py-1 text-[10px] font-medium text-emerald-400 ring-1 ring-emerald-500/20"
+                  >IA</span
+                >
+              </div>
+              <h3 class="mt-2 text-xl font-bold tracking-tight">Dental AI</h3>
+              <p class="mt-3 text-sm text-gray-400 leading-relaxed">
+                Sistema para consultorios dentales con inteligencia artificial:
+                expedientes, agenda y apoyo diagnóstico en el flujo clínico.
+              </p>
+              <ul class="mt-5 space-y-2 text-sm text-gray-300">
+                <li class="flex gap-2">
+                  <span class="text-emerald-400">✓</span> Expediente dental
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-emerald-400">✓</span> Agenda y seguimiento
+                </li>
+                <li class="flex gap-2">
+                  <span class="text-emerald-400">✓</span> IA aplicada al consultorio
+                </li>
+              </ul>
+            </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Proceso de trabajo -->
+      <section id="proceso" class="border-t border-border bg-panel/20 py-20 sm:py-24">
+        <div class="mx-auto max-w-6xl px-4 sm:px-6">
+          <div class="reveal mx-auto max-w-2xl text-center">
+            <p class="text-xs font-medium uppercase tracking-[0.2em] text-emerald-400">
+              Método
+            </p>
+            <h2 class="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
+              Nuestro proceso de trabajo
+            </h2>
+            <p class="mt-4 text-gray-400">
+              Tres pasos claros, tanto para un sistema especializado como para un
+              sitio web profesional.
+            </p>
+          </div>
+
+          <div class="relative mt-14 grid gap-4 md:grid-cols-3">
+            <div class="process-line" aria-hidden="true"></div>
+
+            <article
+              class="bento-card reveal reveal-d1 group rounded-3xl border border-border bg-panel p-7 hover:border-emerald-500/40 hover:shadow-glow"
+            >
+              <span
+                class="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-500/10 font-mono text-sm font-bold text-emerald-400 ring-1 ring-emerald-500/20 transition duration-500 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-gray-950"
+                >01</span
+              >
+              <h3 class="mt-5 text-lg font-bold">Diagnóstico</h3>
+              <p class="mt-2 text-sm leading-relaxed text-gray-400">
+                Entendemos tu operación, tu marca y el resultado que necesitas —
+                sistema interno o presencia web — antes de escribir una línea.
+              </p>
+            </article>
+
+            <article
+              class="bento-card reveal reveal-d2 group rounded-3xl border border-border bg-panel p-7 hover:border-emerald-500/40 hover:shadow-glow"
+            >
+              <span
+                class="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-500/10 font-mono text-sm font-bold text-emerald-400 ring-1 ring-emerald-500/20 transition duration-500 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-gray-950"
+                >02</span
+              >
+              <h3 class="mt-5 text-lg font-bold">Diseño y desarrollo</h3>
+              <p class="mt-2 text-sm leading-relaxed text-gray-400">
+                Ingeniería y diseño de alta gama: software a la medida o un sitio
+                rápido, seguro y optimizado para tu mercado.
+              </p>
+            </article>
+
+            <article
+              class="bento-card reveal reveal-d3 group rounded-3xl border border-border bg-panel p-7 hover:border-emerald-500/40 hover:shadow-glow"
+            >
+              <span
+                class="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-500/10 font-mono text-sm font-bold text-emerald-400 ring-1 ring-emerald-500/20 transition duration-500 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-gray-950"
+                >03</span
+              >
+              <h3 class="mt-5 text-lg font-bold">Lanzamiento y soporte</h3>
+              <p class="mt-2 text-sm leading-relaxed text-gray-400">
+                Publicamos o instalamos, capacitamos a tu equipo y damos soporte
+                para que la operación no se detenga.
+              </p>
+            </article>
+          </div>
+
+          <p class="reveal mt-12 text-center">
+            <a
+              href="#contacto"
+              class="group inline-flex items-center gap-2 text-sm font-medium text-gray-400 transition duration-300 hover:text-emerald-400"
+            >
+              ¿Listo para el primer paso?
+              <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
+            </a>
+          </p>
+        </div>
+      </section>
+
+      <!-- Testimonios -->
+      <section id="testimonios" class="border-t border-border py-16 sm:py-20" aria-label="Testimonios de clientes">
+        <div class="mx-auto max-w-6xl px-4 sm:px-6">
+          <div class="reveal mx-auto max-w-2xl text-center">
+            <p class="text-xs font-medium uppercase tracking-[0.2em] text-emerald-400">
+              Clientes
+            </p>
+            <h2 class="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
+              Equipos que ya trabajan con Titanium
+            </h2>
+            <p class="mt-4 text-gray-400">
+              Gimnasios, clínicas y marcas que operan con nuestros sistemas o
+              con un sitio web profesional.
+            </p>
+          </div>
+        </div>
+        <div class="marquee mt-12" aria-hidden="true">
+          <div class="marquee-track">
+            <article class="w-[22rem] shrink-0 rounded-2xl border border-border bg-panel p-6 sm:w-[26rem]">
+              <p class="text-sm leading-relaxed text-gray-300">
+                “Antes todo era Excel y WhatsApp. Ahora sé quién pagó, quién debe y cuánto hay en caja — en el momento.”
+              </p>
+              <p class="mt-4 text-sm font-semibold text-white">Roberto S.</p>
+              <p class="text-xs text-emerald-400">Dueño de gimnasio · Titanium Gym System</p>
+            </article>
+            <article class="w-[22rem] shrink-0 rounded-2xl border border-border bg-panel p-6 sm:w-[26rem]">
+              <p class="text-sm leading-relaxed text-gray-300">
+                “El expediente se queda en el consultorio. Mis pacientes y yo dormimos más tranquilos.”
+              </p>
+              <p class="mt-4 text-sm font-semibold text-white">Dra. Mariana V.</p>
+              <p class="text-xs text-cyan-400">Gineco-obstetra · Titanium Medical System</p>
+            </article>
+            <article class="w-[22rem] shrink-0 rounded-2xl border border-border bg-panel p-6 sm:w-[26rem]">
+              <p class="text-sm leading-relaxed text-gray-300">
+                “Lo instalaron, capacitaron al personal y al día siguiente ya estábamos cobrando con el sistema.”
+              </p>
+              <p class="mt-4 text-sm font-semibold text-white">Claudia P.</p>
+              <p class="text-xs text-emerald-400">Administradora · Gimnasio</p>
+            </article>
+            <article class="w-[22rem] shrink-0 rounded-2xl border border-border bg-panel p-6 sm:w-[26rem]">
+              <p class="text-sm leading-relaxed text-gray-300">
+                “El sitio carga en un instante y se ve a la altura de la marca. Empezamos a recibir reservas la misma semana.”
+              </p>
+              <p class="mt-4 text-sm font-semibold text-white">Laura M.</p>
+              <p class="text-xs text-cyan-400">Restaurante · Sitio web profesional</p>
+            </article>
+            <article class="w-[22rem] shrink-0 rounded-2xl border border-border bg-panel p-6 sm:w-[26rem]">
+              <p class="text-sm leading-relaxed text-gray-300">
+                “Antes todo era Excel y WhatsApp. Ahora sé quién pagó, quién debe y cuánto hay en caja — en el momento.”
+              </p>
+              <p class="mt-4 text-sm font-semibold text-white">Roberto S.</p>
+              <p class="text-xs text-emerald-400">Dueño de gimnasio · Titanium Gym System</p>
+            </article>
+            <article class="w-[22rem] shrink-0 rounded-2xl border border-border bg-panel p-6 sm:w-[26rem]">
+              <p class="text-sm leading-relaxed text-gray-300">
+                “El expediente se queda en el consultorio. Mis pacientes y yo dormimos más tranquilos.”
+              </p>
+              <p class="mt-4 text-sm font-semibold text-white">Dra. Mariana V.</p>
+              <p class="text-xs text-cyan-400">Gineco-obstetra · Titanium Medical System</p>
+            </article>
+            <article class="w-[22rem] shrink-0 rounded-2xl border border-border bg-panel p-6 sm:w-[26rem]">
+              <p class="text-sm leading-relaxed text-gray-300">
+                “Lo instalaron, capacitaron al personal y al día siguiente ya estábamos cobrando con el sistema.”
+              </p>
+              <p class="mt-4 text-sm font-semibold text-white">Claudia P.</p>
+              <p class="text-xs text-emerald-400">Administradora · Gimnasio</p>
+            </article>
+            <article class="w-[22rem] shrink-0 rounded-2xl border border-border bg-panel p-6 sm:w-[26rem]">
+              <p class="text-sm leading-relaxed text-gray-300">
+                “El sitio carga en un instante y se ve a la altura de la marca. Empezamos a recibir reservas la misma semana.”
+              </p>
+              <p class="mt-4 text-sm font-semibold text-white">Laura M.</p>
+              <p class="text-xs text-cyan-400">Restaurante · Sitio web profesional</p>
+            </article>
+          </div>
+        </div>
+        <div class="sr-only">
+          <p>Roberto S., dueño de gimnasio: Antes todo era Excel y WhatsApp. Ahora sé quién pagó, quién debe y cuánto hay en caja — en el momento.</p>
+          <p>Dra. Mariana V., gineco-obstetra: El expediente se queda en el consultorio. Mis pacientes y yo dormimos más tranquilos.</p>
+          <p>Claudia P., administradora: Lo instalaron, capacitaron al personal y al día siguiente ya estábamos cobrando con el sistema.</p>
+          <p>Laura M., restaurante: El sitio carga en un instante y se ve a la altura de la marca. Empezamos a recibir reservas la misma semana.</p>
+        </div>
+      </section>
+
+      <!-- Contacto -->
+      <section id="contacto" class="border-t border-border py-20 sm:py-24">
+        <div class="mx-auto max-w-6xl px-4 sm:px-6">
+          <div class="grid gap-12 lg:grid-cols-2">
+            <div class="reveal">
+              <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Cotiza tu proyecto</h2>
+              <p class="mt-4 text-gray-400 leading-relaxed">
+                Sistema especializado o sitio web profesional: escríbenos por WhatsApp
+                o el formulario y te respondemos con una cotización clara.
+              </p>
+              <a
+                id="contact-whatsapp-big"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mt-8 flex w-full items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-emerald-500 to-emerald-600 px-6 py-5 text-base font-bold text-gray-950 shadow-glow transition duration-300 ease-agency hover:-translate-y-0.5 hover:from-emerald-400 hover:to-emerald-500 sm:text-lg"
+              >
+                <svg class="h-7 w-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+                  />
+                </svg>
+                Cotizar por WhatsApp
+              </a>
+              <p class="mt-3 text-center text-xs text-gray-500 lg:text-left">
+                Respuesta directa para sistemas y sitios web.
+              </p>
+            </div>
+
+            <form
+              id="contact-form"
+              class="reveal reveal-d2 rounded-2xl border border-border bg-panel p-6 transition duration-500 hover:border-emerald-500/25 sm:p-8"
+              action="#"
+              method="post"
+            >
+              <div class="space-y-5">
+                <div>
+                  <label for="nombre" class="block text-sm font-medium text-gray-300"
+                    >Nombre</label
+                  >
+                  <input
+                    type="text"
+                    id="nombre"
+                    name="nombre"
+                    required
+                    autocomplete="name"
+                    class="mt-1.5 w-full rounded-lg border border-border bg-surface px-4 py-2.5 text-sm text-white placeholder-gray-600 outline-none ring-emerald-500/0 transition focus:border-emerald-500/50 focus:ring-2 focus:ring-emerald-500/20"
+                    placeholder="Tu nombre o negocio"
+                  />
+                </div>
+                <div>
+                  <label for="email" class="block text-sm font-medium text-gray-300"
+                    >Correo</label
+                  >
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    autocomplete="email"
+                    class="mt-1.5 w-full rounded-lg border border-border bg-surface px-4 py-2.5 text-sm text-white placeholder-gray-600 outline-none transition focus:border-emerald-500/50 focus:ring-2 focus:ring-emerald-500/20"
+                    placeholder="correo@ejemplo.com"
+                  />
+                </div>
+                <div>
+                  <label for="mensaje" class="block text-sm font-medium text-gray-300"
+                    >Mensaje</label
+                  >
+                  <textarea
+                    id="mensaje"
+                    name="mensaje"
+                    rows="4"
+                    required
+                    class="mt-1.5 w-full resize-y rounded-lg border border-border bg-surface px-4 py-2.5 text-sm text-white placeholder-gray-600 outline-none transition focus:border-emerald-500/50 focus:ring-2 focus:ring-emerald-500/20"
+                    placeholder="¿Sistema o sitio web? Cuéntanos tu proyecto."
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  class="w-full rounded-xl bg-white/5 py-3 text-sm font-semibold ring-1 ring-white/10 transition duration-300 hover:bg-emerald-500/10 hover:ring-emerald-500/40"
+                >
+                  Enviar mensaje
+                </button>
+                <p id="form-feedback" class="hidden text-center text-sm text-emerald-400"></p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-border bg-panel/50 py-10">
+      <div
+        class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 text-center sm:flex-row sm:px-6 sm:text-left"
+      >
+        <p class="text-sm text-gray-500">
+          © <span id="year"></span> Titanium Solutions. Todos los derechos reservados.
+        </p>
+        <p class="text-xs text-gray-600">
+          Agencia de software y tecnología · México
+        </p>
+      </div>
+    </footer>
+
+    <!-- FAB WhatsApp -->
+    <a
+      id="fab-whatsapp"
+      href="#"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-500 text-gray-950 shadow-lg shadow-emerald-500/30 transition duration-300 ease-agency hover:scale-110 hover:bg-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2 focus:ring-offset-surface sm:h-16 sm:w-16"
+      aria-label="Cotizar por WhatsApp"
+    >
+      <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+        />
+      </svg>
+    </a>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      document.getElementById("nav-whatsapp").href = waLink(WHATSAPP_MSG_DEFAULT);
+      document.getElementById("hero-whatsapp").href = waLink(WHATSAPP_MSG_DEFAULT);
+      document.getElementById("contact-whatsapp-big").href = waLink(WHATSAPP_MSG_DEFAULT);
+      document.getElementById("fab-whatsapp").href = waLink(WHATSAPP_MSG_DEFAULT);
+      document.getElementById("web-whatsapp").href = waLink(
+        "¡Hola! Quiero una cotización para un sitio web profesional."
+      );
+
+      const menuToggle = document.getElementById("menu-toggle");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const iconOpen = document.getElementById("icon-open");
+      const iconClose = document.getElementById("icon-close");
+
+      menuToggle.addEventListener("click", () => {
+        const open = mobileMenu.classList.toggle("hidden");
+        const isOpen = !open;
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+        iconOpen.classList.toggle("hidden", isOpen);
+        iconClose.classList.toggle("hidden", !isOpen);
+      });
+
+      mobileMenu.querySelectorAll(".nav-link").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+          menuToggle.setAttribute("aria-expanded", "false");
+          iconOpen.classList.remove("hidden");
+          iconClose.classList.add("hidden");
+        });
+      });
+
+      document.getElementById("contact-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const nombre = document.getElementById("nombre").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const mensaje = document.getElementById("mensaje").value.trim();
+        const body = `Hola, soy ${nombre} (${email}).\n\n${mensaje}`;
+        window.open(waLink(body), "_blank", "noopener,noreferrer");
+        const fb = document.getElementById("form-feedback");
+        fb.textContent = "Abriendo WhatsApp con tu mensaje…";
+        fb.classList.remove("hidden");
+      });
+
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const finePointer = window.matchMedia("(pointer: fine)").matches;
+
+      if (!reduceMotion) {
+        const glow = document.getElementById("cursor-glow");
+        let spotX = window.innerWidth * 0.5;
+        let spotY = window.innerHeight * 0.28;
+        let targetX = spotX;
+        let targetY = spotY;
+        window.addEventListener(
+          "pointermove",
+          (event) => {
+            targetX = event.clientX;
+            targetY = event.clientY;
+          },
+          { passive: true }
+        );
+        const tickGlow = () => {
+          spotX += (targetX - spotX) * 0.12;
+          spotY += (targetY - spotY) * 0.12;
+          glow.style.setProperty("--spot-x", `${spotX}px`);
+          glow.style.setProperty("--spot-y", `${spotY}px`);
+          requestAnimationFrame(tickGlow);
+        };
+        requestAnimationFrame(tickGlow);
+
+        document.querySelectorAll(".bento-card").forEach((card) => {
+          card.addEventListener("pointermove", (event) => {
+            const rect = card.getBoundingClientRect();
+            card.style.setProperty("--mx", `${event.clientX - rect.left}px`);
+            card.style.setProperty("--my", `${event.clientY - rect.top}px`);
+          });
+        });
+
+        if (finePointer) {
+          document.querySelectorAll(".tilt-card").forEach((card) => {
+            const max = 9;
+            card.addEventListener("pointermove", (event) => {
+              const rect = card.getBoundingClientRect();
+              const x = (event.clientX - rect.left) / rect.width;
+              const y = (event.clientY - rect.top) / rect.height;
+              card.style.setProperty("--rx", `${(0.5 - y) * max}deg`);
+              card.style.setProperty("--ry", `${(x - 0.5) * max}deg`);
+            });
+            card.addEventListener("pointerleave", () => {
+              card.style.setProperty("--rx", "0deg");
+              card.style.setProperty("--ry", "0deg");
+            });
+          });
+        }
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.14, rootMargin: "0px 0px -8% 0px" }
+        );
+        document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+      } else {
+        document.querySelectorAll(".reveal").forEach((el) => el.classList.add("is-visible"));
+      }
+    </script>
+  </body>
+</html>
